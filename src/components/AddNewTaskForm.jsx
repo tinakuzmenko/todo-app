@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import Input from "../UI/Input";
 import Button from "../UI/Button";
+import TasksContext from "../store/tasks-context";
 
-const AddNewTaskForm = ({ onAddNewTask }) => {
+const AddNewTaskForm = () => {
   const [inputValue, setInputValue] = useState("");
+  const tasksCtx = useContext(TasksContext);
 
   const inputChangeHandler = (event) => {
     setInputValue(event.target.value);
@@ -12,7 +14,7 @@ const AddNewTaskForm = ({ onAddNewTask }) => {
 
   const submitFormHandler = (event) => {
     event.preventDefault();
-    onAddNewTask(inputValue);
+    tasksCtx.addNewTask(inputValue);
     setInputValue("");
   };
 

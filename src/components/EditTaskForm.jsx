@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Input from "../UI/Input";
 import Button from "../UI/Button";
 
-const EditTaskForm = ({ title, onFinishEdit, onTaskChange }) => {
+const EditTaskForm = ({ id, title, onChangeEditMode, onTaskTitleChange }) => {
   const [inputValue, setInputValue] = useState(title);
 
   const inputChangeHandler = (event) => {
@@ -13,23 +13,24 @@ const EditTaskForm = ({ title, onFinishEdit, onTaskChange }) => {
   const submitFormHandler = (event) => {
     event.preventDefault();
 
-    onTaskChange(inputValue);
+    onTaskTitleChange(inputValue);
 
     setInputValue("");
-    onFinishEdit();
+    onChangeEditMode(false);
   };
 
   const cancelButtonClickHandler = () => {
-    onFinishEdit();
+    onChangeEditMode(false);
   };
 
   return (
     <StyledEditForm onSubmit={submitFormHandler}>
       <Input
         type="text"
-        id="edit-t1"
+        id={id}
         value={inputValue}
         onChange={inputChangeHandler}
+        ariaLabel="task title input"
       />
       <Button type="submit" variant="primary">
         Edit
@@ -46,9 +47,6 @@ const StyledEditForm = styled.form`
   grid-template-columns: 1fr auto auto;
   grid-column-gap: 5px;
   align-items: center;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
 `;
 
 export default EditTaskForm;

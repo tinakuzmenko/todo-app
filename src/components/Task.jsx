@@ -1,18 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import Button from "../UI/Button";
 import styled from "styled-components";
+import TasksContext from "../store/tasks-context";
 
-const Task = ({ task, onEdit, onRemove, onTaskFinished }) => {
+const Task = ({ task, onChangeEditMode, onChangeTaskFinished }) => {
+  const tasksCtx = useContext(TasksContext);
+
   const editTaskClickHandler = () => {
-    onEdit();
+    onChangeEditMode(true);
   };
 
   const checkboxChangeHandler = (event) => {
-    onTaskFinished(event.target.checked);
+    onChangeTaskFinished(event.target.checked);
   };
 
   const removeButtonClickHandler = () => {
-    onRemove(task.id);
+    tasksCtx.removeTaskItem(task.id);
   };
 
   return (
@@ -39,9 +42,6 @@ const StyledTask = styled.div`
   grid-template-columns: auto 1fr auto auto;
   grid-column-gap: 5px;
   align-items: center;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
 
   label {
     color: ${({ isFinished }) => (isFinished ? "#757575" : "inherit")};

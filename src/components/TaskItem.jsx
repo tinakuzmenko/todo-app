@@ -1,50 +1,55 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import EditTaskForm from "./EditTaskForm";
 import Task from "./Task";
+import TasksContext from "../store/tasks-context";
+import styled from "styled-components";
 
-const TaskItem = ({ task, onRemove, onChangeTask }) => {
+const TaskItem = ({ task }) => {
+  const tasksCtx = useContext(TasksContext);
   const [isEditMode, setIsEditMode] = useState(false);
 
-  const editTaskHandler = () => {
-    setIsEditMode(true);
+  const changeEditModeHandler = (isActive) => {
+    setIsEditMode(isActive);
   };
 
-  const finishEditTaskHandler = () => {
-    setIsEditMode(false);
-  };
-
-  const changeTaskHandler = (newTaskTitle) => {
-    onChangeTask({
+  const changeTaskTitleHandler = (newTaskTitle) => {
+    tasksCtx.updateTask({
       ...task,
       title: newTaskTitle,
     });
   };
 
-  const finishTaskHandler = (isFinished) => {
-    onChangeTask({
+  const changeIsFinishedHandler = (isFinished) => {
+    tasksCtx.updateTask({
       ...task,
       isFinished,
     });
   };
 
   return (
-    <li>
+    <StyledTaskItem>
       {isEditMode ? (
         <EditTaskForm
           title={task.title}
-          onFinishEdit={finishEditTaskHandler}
-          onTaskChange={changeTaskHandler}
+          id={task.id}
+          onChangeEditMode={changeEditModeHandler}
+          onTaskTitleChange={changeTaskTitleHandler}
         />
       ) : (
         <Task
           task={task}
-          onEdit={editTaskHandler}
-          onRemove={onRemove}
-          onTaskFinished={finishTaskHandler}
+          onChangeEditMode={changeEditModeHandler}
+          onChangeTaskFinished={changeIsFinishedHandler}
         />
       )}
-    </li>
+    </StyledTaskItem>
   );
 };
+
+const StyledTaskItem = styled.li`
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+`;
 
 export default TaskItem;

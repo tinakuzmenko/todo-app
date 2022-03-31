@@ -1,24 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import TaskItem from "./TaskItem";
 import NoTasks from "./NoTasks";
+import TasksContext from "../store/tasks-context";
 
-const TasksList = ({ tasks, onRemove, onChangeTask }) => {
-  if (!tasks.length) return <NoTasks />;
+const TasksList = () => {
+  const tasksCtx = useContext(TasksContext);
 
-  const sortedTasks = [...tasks].sort(
-    (prevTask, currTask) => prevTask.isFinished > currTask.isFinished
-  );
+  if (!tasksCtx.tasks.length) return <NoTasks />;
+
+  const sortedTasks = [...tasksCtx.tasks].sort((prevTask, currTask) => {
+    if (prevTask.isFinished === currTask.isFinished) return 0;
+
+    return prevTask.isFinished ? 1 : -1;
+  });
 
   return (
     <StyledTasksList>
       {sortedTasks.map((task) => (
-        <TaskItem
-          key={task.id}
-          task={task}
-          onRemove={onRemove}
-          onChangeTask={onChangeTask}
-        />
+        <TaskItem key={task.id} task={task} />
       ))}
     </StyledTasksList>
   );
