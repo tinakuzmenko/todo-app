@@ -15,6 +15,10 @@
 
 In the project directory, you can run:
 
+### `npm install`
+
+To install the project locally.
+
 ### `npm start`
 
 Runs the app in the development mode.\
@@ -26,6 +30,10 @@ You may also see any lint errors in the console.
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.\
+
+### `npm run lint`
+
+To run ESlint checks.
 
 ### `npm run build`
 
