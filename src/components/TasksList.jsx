@@ -2,11 +2,10 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import TaskItem from "./TaskItem";
 import NoTasks from "./NoTasks";
-import TasksContext from "../store/tasks-context";
+import TasksContext from "../store/tasksContext";
 
 const TasksList = () => {
   const tasksCtx = useContext(TasksContext);
-  console.log(tasksCtx);
 
   if (!tasksCtx.tasks || !tasksCtx.tasks.length) return <NoTasks />;
 

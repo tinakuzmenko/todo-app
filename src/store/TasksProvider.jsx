@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer } from "react";
-import TasksContext from "./tasks-context";
+import TasksContext from "./tasksContext";
 import { getFromStorage, setToStorage } from "../utilities/localStorage";
 
 const defaultTasksState = { tasks: getFromStorage("tasks") || [] };

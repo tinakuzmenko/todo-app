@@ -1,9 +1,9 @@
-import Header from "./UI/Header";
+import Header from "./components/UI/Header";
 import AddNewTaskForm from "./components/AddNewTaskForm";
 import TasksList from "./components/TasksList";
-import Footer from "./UI/Footer";
+import Footer from "./components/UI/Footer";
 import { GlobalStyle } from "./GlobalStyles";
-import Main from "./UI/Main";
+import Main from "./components/UI/Main";
 import TasksProvider from "./store/TasksProvider";
 
 const App = () => {

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Input from "../UI/Input";
-import Button from "../UI/Button";
+import Input from "./UI/Input";
+import Button from "./UI/Button";
 
 const EditTaskForm = ({ id, title, onChangeEditMode, onTaskTitleChange }) => {
   const [inputValue, setInputValue] = useState(title);

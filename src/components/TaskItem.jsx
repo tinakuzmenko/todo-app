@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import EditTaskForm from "./EditTaskForm";
 import Task from "./Task";
-import TasksContext from "../store/tasks-context";
+import TasksContext from "../store/tasksContext";
 import styled from "styled-components";
 
 const TaskItem = ({ task }) => {

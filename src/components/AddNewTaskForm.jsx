@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
 import styled from "styled-components";
-import Input from "../UI/Input";
-import Button from "../UI/Button";
-import TasksContext from "../store/tasks-context";
+import Input from "./UI/Input";
+import Button from "./UI/Button";
+import TasksContext from "../store/tasksContext";
 
 const AddNewTaskForm = () => {
   const [inputValue, setInputValue] = useState("");

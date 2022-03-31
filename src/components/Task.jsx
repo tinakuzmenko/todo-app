@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import Button from "../UI/Button";
+import Button from "./UI/Button";
 import styled from "styled-components";
-import TasksContext from "../store/tasks-context";
+import TasksContext from "../store/tasksContext";
 
 const Task = ({ task, onChangeEditMode, onChangeTaskFinished }) => {
   const tasksCtx = useContext(TasksContext);
