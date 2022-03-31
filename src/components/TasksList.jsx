@@ -6,8 +6,9 @@ import TasksContext from "../store/tasks-context";
 
 const TasksList = () => {
   const tasksCtx = useContext(TasksContext);
+  console.log(tasksCtx);
 
-  if (!tasksCtx.tasks.length) return <NoTasks />;
+  if (!tasksCtx.tasks || !tasksCtx.tasks.length) return <NoTasks />;
 
   const sortedTasks = [...tasksCtx.tasks].sort((prevTask, currTask) => {
     if (prevTask.isFinished === currTask.isFinished) return 0;

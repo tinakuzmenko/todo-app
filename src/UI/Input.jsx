@@ -11,6 +11,7 @@ const Input = (props) => {
       value={props.value ?? ""}
       aria-label={props.ariaLabel ?? ""}
       onChange={props.onChange}
+      required={props.required}
     />
   );
 };

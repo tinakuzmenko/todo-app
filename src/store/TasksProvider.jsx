@@ -2,7 +2,7 @@ import React, { useEffect, useReducer } from "react";
 import TasksContext from "./tasks-context";
 import { getFromStorage, setToStorage } from "../utilities/localStorage";
 
-const defaultTasksState = getFromStorage("tasks") ?? [];
+const defaultTasksState = { tasks: getFromStorage("tasks") || [] };
 
 const tasksReducer = (state, action) => {
   if (action.type === "ADD_NEW_TASK") {
@@ -47,7 +47,7 @@ const TasksProvider = (props) => {
   );
 
   useEffect(() => {
-    setToStorage("tasks", tasksState);
+    setToStorage("tasks", tasksState.tasks);
   }, [tasksState]);
 
   const addNewTaskHandler = (task) => {

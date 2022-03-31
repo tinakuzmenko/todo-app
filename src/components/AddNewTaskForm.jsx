@@ -14,6 +14,9 @@ const AddNewTaskForm = () => {
 
   const submitFormHandler = (event) => {
     event.preventDefault();
+
+    if (!inputValue) return;
+
     tasksCtx.addNewTask(inputValue);
     setInputValue("");
   };
@@ -28,6 +31,7 @@ const AddNewTaskForm = () => {
         value={inputValue}
         onChange={inputChangeHandler}
         ariaLabel="Create new task"
+        required={true}
       />
       <Button type="submit" variant="primary">
         + Add
